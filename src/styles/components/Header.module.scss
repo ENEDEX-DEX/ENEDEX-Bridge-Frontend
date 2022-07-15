@@ -1,0 +1,75 @@
+.HeaderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 24px;
+    background-color: white;
+    flex-direction: row-reverse;
+    padding-bottom: 20px;
+    .ButtonContainer {
+        button {
+            margin-left: 50px;
+            min-width: 200px;
+        }
+        width: 40%;
+        display:flex;
+    }
+    .BalanceSection {
+        display: flex;
+        align-items: center;
+        // background-color: #fff;
+        padding: 6px 6px;
+        border-radius: 13px;
+        margin-top: 0.25rem;
+        width: 20%;
+        img {
+            height: 60px;
+            margin-left: -0.5rem;
+            margin-top: 0.5rem;
+        }
+        p {
+            margin: 0;
+            font-weight: 500;
+            color: white;
+            font-size: 32px;
+            letter-spacing: 3px;
+            padding-top: 0.25rem;
+            padding-left: 0.5rem;
+        }
+    }
+    .BridgeHeader {
+        border-radius: 20px;
+        font-weight: 500;
+        color: white;
+        background-color: rgb(12, 118, 191);
+        display: flex;
+        flex-flow: row nowrap;
+        outline: none;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 1px;
+        font-size: 18px;
+        padding: 3px 18px;
+        width: fit-content;
+        margin: 0px 0.3rem;
+    }
+    .BridgeHeaderLink {
+        border-radius: 20px;
+        font-weight: 500;
+        color: #26c5eb;
+        display: flex;
+        flex-flow: row nowrap;
+        outline: none;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 1px;
+        font-size: 18px;
+        padding: 3px 18px;
+        width: fit-content;
+        margin: 0px 0.3rem;
+    }
+    .chainID {
+        color: #ff9100;
+        width: 40%;
+    }
+}

@@ -1,0 +1,68 @@
+@mixin common-background() {
+    background-color: #191b1f;
+    color: white;
+    // min-width: 200px;
+    width: auto;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    //    transition: 0.7s ease-in-out;
+    //    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+}
+
+.SwapContainer {
+    //    transition: 0.7s ease-in-out;
+    .View {
+        @include common-background();
+        div {
+            display: flex;
+            align-items: center;
+            img {
+                height: 30px;
+                width: 50px;
+            }
+            p {
+                margin-top: 0.25rem;
+                font-size: 24px;
+                text-align: center;
+                letter-spacing: 2px;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+    .Dropdown {
+        background-color: #26c5eb;
+        color: #002a57;
+        min-width: 200px;
+        z-index: 100;
+        border-radius: 1.5rem;
+        border: 0px solid #fff;
+        border: 0px solid #fff;
+        border-width: 3px 3px 3px 3px;
+        hr {
+            margin: 0;
+        }
+        div {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.5rem;
+            img {
+                height: 30px;
+            }
+            p {
+                margin: 0;
+                font-size: 18px;
+                letter-spacing: 0.4px;
+                font-weight: 500;
+            }
+        }
+    }
+    &:hover {
+        //    cursor: pointer;
+        //    z-index: 100;
+        transform: scale(1);
+    }
+}

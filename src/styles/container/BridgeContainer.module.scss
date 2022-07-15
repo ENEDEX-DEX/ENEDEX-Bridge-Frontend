@@ -1,0 +1,41 @@
+.BridgeContainer {
+    min-width: 360px;
+    max-width: 100%;
+    margin: 1rem 0rem 1rem 0rem;
+    margin-top: 30px;
+    border-radius: 2rem;
+    padding-bottom: 1.5rem;
+    background-color: #191b1f;
+    // background-color: #212121;
+    .SwapSection {
+        justify-content: center;
+        align-items: center;
+        //    width: 100%;
+        text-align: center;
+        margin: 0rem 0rem;
+        padding-top: 0rem;
+        margin-bottom: 20px;
+        .SwapIcon {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .img {
+        width: 40px;
+        height: 40px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .text {
+        margin-top: 0.25rem;
+        font-size: 24px;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: white;
+    }
+}

@@ -1,0 +1,40 @@
+.ButtonContainer {
+    text-align: center;
+    margin-top: 1rem;
+    .Button {
+        width: 100%;
+        margin: 0 0 0 0;
+        outline: none;
+        border: none;
+        padding: 0.5rem;
+        text-align: center;
+        align-items: center;
+        letter-spacing: 1px;
+        font-size: 18px;
+        font-weight: 700;
+        background-color: #0a172b;
+        color: #649ce8;
+        border-radius: 0.65rem;
+        transition: 0.1s ease-in-out;
+        &:hover {
+            background-color: #0a172b;
+            transform: scale(1);
+            cursor: pointer;
+            //          box-shadow: 0px 2px 8px 0px rgba(194, 170, 170, 0.75);
+            //           -webkit-box-shadow: 0px 2px 8px 0px rgba(194, 170, 170, 0.75);
+            //           -moz-box-shadow: 0px 2px 8px 0px rgba(194, 170, 170, 0.75);
+        }
+        &:active {
+            background-color: #0a172b;
+            box-shadow: 0 0 0 1pt #26c5eb;
+            transform: scale(1);
+            //    border: 1px solid #d4af37;
+            cursor: pointer;
+        }
+        &:disabled {
+            background-color: #0a172b;
+            box-shadow: none;
+            cursor: no-drop;
+        }
+    }
+}
