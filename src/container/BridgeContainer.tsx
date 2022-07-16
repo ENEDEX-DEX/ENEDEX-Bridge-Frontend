@@ -309,7 +309,7 @@ const BridgeContainer: React.FC = () => {
           Input &nbsp;
         </p>
 
-        <p style={{ marginLeft: "20px", color: "#535353", marginTop: "35px", textAlign: "left", marginBottom: "-4px" }}>
+        <p style={{ marginLeft: "20px", color: "#535353", marginTop: "35px", textAlign: "left"}}>
           Balance : &nbsp;
           {
             balance &&
@@ -325,7 +325,9 @@ const BridgeContainer: React.FC = () => {
           SWAP
         </Button>
       </section>
+      <p style={{"color":"white"}}>{chainId === 56 ? "AVAX ENE token address: 0x214B86ed37d709C9aDA719Ec00ABBe9E0c802D1d" : "BSC ENE token address: 0x3bEcB1170183fdBc8f1603dacD1705c093BC33B7"}</p>
     </div>
+    
   );
 };
 

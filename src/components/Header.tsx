@@ -32,45 +32,6 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.HeaderContainer}>
-
-      <section className={styles.ButtonContainer}>
-      <h1 className={styles.chainID}>{chainId === 56 ? "Binance Smart Chain" : "Avalanche"}</h1>
-        <Button
-          clickHandler={
-            !account
-              ? () =>
-                activateBrowserWallet(() => {
-                  toast.dismiss();
-                  toast("Please select either Hertz or Binance Smart Chain chain", {
-                    autoClose: 1600,
-                    closeOnClick: true,
-                    theme: "dark",
-                  });
-                })
-              : () => { }
-          }
-        >
-          {accountData
-            ? `${accountData?.substring(0, 4)}...${accountData?.substring(
-              accountData.length - 4
-            )}`
-            : "Connect Wallet"}
-        </Button>
-        
-      </section>
-
-      {/* <div style={{}}>
-        <div style={{ "display": "flex", "marginTop":"16px", "borderRadius": "20px", "paddingTop": "4px", "paddingBottom": "4px", "backgroundColor": "rgb(9, 27, 37)" }}>
-          <a className= {styles.BridgeHeader} >
-            Bridge
-          </a>
-          <a className= {styles.BridgeHeaderLink} target="_blank" href={'https://hertzswap.net/'}>
-            Hertz Swap <span style={{ fontSize: '11px', color: '#26c5eb' }}>↗</span>
-          </a>
-        </div>
-      </div> */}
-
-
       <section className={styles.BalanceSection}>
         <img src={ENEImg} alt="logo" />
         {/* <p>
@@ -86,6 +47,35 @@ const Header: React.FC = () => {
 
 
       </section>
+      <section className={styles.ButtonContainer}>
+        <h1 className={styles.chainID}>{chainId === 56 ? "Binance Smart Chain" : "Avalanche C-Chain"}</h1>
+        <Button
+          clickHandler={
+            !account
+              ? () =>
+                activateBrowserWallet(() => {
+                  toast.dismiss();
+                  toast("Please select either Avalanche C-Chain or Binance Smart Chain chain", {
+                    autoClose: 1600,
+                    closeOnClick: true,
+                    theme: "dark",
+                  });
+                })
+              : () => { }
+          }
+        >
+          {accountData
+            ? `${accountData?.substring(0, 4)}...${accountData?.substring(
+              accountData.length - 4
+            )}`
+            : "Connect Wallet"}
+        </Button>
+
+      </section>
+
+
+
+
     </div>
   );
 };
