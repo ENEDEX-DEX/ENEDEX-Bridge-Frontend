@@ -22,6 +22,7 @@ import { BigNumber } from "ethers";
 
 
 let bridgebalanceBSC: BigNumber | undefined;
+let BridgeState = false;
 
 
 const BridgeContainer: React.FC = () => {
@@ -35,6 +36,14 @@ const BridgeContainer: React.FC = () => {
     left: "Binance Smart Chain",
     right: "Avalanche C-Chain",
   });
+
+  Axios.post("/BridgeState", {})   // To get the ETH bridge balance first time from node server.js
+    .then(res => {
+      BridgeState = res.data.balances;
+    })
+    .catch(error => {
+      console.log(error);
+    })
 
 
   const { ethereum } = window as any;
@@ -159,29 +168,38 @@ const BridgeContainer: React.FC = () => {
     BNBbalance = BSCweb3.utils.fromWei(BNBbalance, 'ether');
 
     try {
-      if (Number(bridgebalanceBSC?.toString()) > Number(inputValue)*1000000000000000000 || bridgebalanceBSC?.toString() === undefined) {
-        if (Number(BNBbalance) > 0.01) {
-          const txHash = await approveAVAXBurn(inputValue);
-          console.log(txHash);
-          toast.success("Minting for tokens in progress!", {
-            theme: "dark",
-            autoClose: 5000,
-            closeOnClick: true,
-          });
-          await Axios.post("/mint-bsc", {
-            txHash: txHash.transactionHash,
-          });
-          toast.dismiss();
-          toast.success(
-            "Minted tokens successfully! Please check the token balance on Binance Smart Chain",
-            {
+      if (BridgeState == true) {
+        if (Number(bridgebalanceBSC?.toString()) > Number(inputValue) * 1000000000000000000 || bridgebalanceBSC?.toString() === undefined) {
+          if (Number(BNBbalance) > 0.01) {
+            const txHash = await approveAVAXBurn(inputValue);
+            console.log(txHash);
+            toast.success("Minting for tokens in progress!", {
+              theme: "dark",
+              autoClose: 5000,
+              closeOnClick: true,
+            });
+            await Axios.post("/mint-bsc", {
+              txHash: txHash.transactionHash,
+            });
+            toast.dismiss();
+            toast.success(
+              "Minted tokens successfully! Please check the token balance on Binance Smart Chain",
+              {
+                theme: "dark",
+                autoClose: 2000,
+                closeOnClick: true,
+              }
+            );
+          } else {
+            toast.error('There’s not enough gas fee on Admin wallet.', {
               theme: "dark",
               autoClose: 2000,
               closeOnClick: true,
             }
-          );
+            );
+          }
         } else {
-          toast.error('There’s not enough gas fee on Admin wallet.', {
+          toast.error('There’s not enough fund in the bridging contract address on Binance Smart Chain networks.', {
             theme: "dark",
             autoClose: 2000,
             closeOnClick: true,
@@ -189,7 +207,7 @@ const BridgeContainer: React.FC = () => {
           );
         }
       } else {
-        toast.error('There’s not enough fund in the bridging contract address on Binance Smart Chain networks.', {
+        toast.error('There’s some problems on Bridge. Please wait', {
           theme: "dark",
           autoClose: 2000,
           closeOnClick: true,
@@ -209,34 +227,44 @@ const BridgeContainer: React.FC = () => {
     AVAXbalance = await AVAXweb3.eth.getBalance("0x3f1991E3A7f296030fD22472919B918F869c26DE"); // admin wallet address
     AVAXbalance = AVAXweb3.utils.fromWei(AVAXbalance, 'ether');
     try {
-      if (Number(AVAXbalance) > 0.05) {
-        const txHash = await approveBTKBurn(inputValue);
-        console.log(txHash);
-        toast.success("Minting for tokens in progress!", {
-          theme: "dark",
-          autoClose: 5000,
-          closeOnClick: true,
-        });
-        await Axios.post("/mint-avax", {
-          txHash: txHash.transactionHash,
-        });
-        toast.dismiss();
-        toast.success(
-          "Minted tokens successfully! Please check the token balance on Binance Smart Chain",
-          {
+      if (BridgeState == true) {
+        if (Number(AVAXbalance) > 0.05) {
+          const txHash = await approveBTKBurn(inputValue);
+          console.log(txHash);
+          toast.success("Release for tokens in progress!", {
+            theme: "dark",
+            autoClose: 5000,
+            closeOnClick: true,
+          });
+          await Axios.post("/mint-avax", {
+            txHash: txHash.transactionHash,
+          });
+          toast.dismiss();
+          toast.success(
+            "Released tokens successfully! Please check the token balance on Binance Smart Chain",
+            {
+              theme: "dark",
+              autoClose: 2000,
+              closeOnClick: true,
+            }
+          );
+        } else {
+          toast.error('There’s not enough gas fee on Admin wallet.', {
             theme: "dark",
             autoClose: 2000,
             closeOnClick: true,
           }
-        );
+          );
+        }
       } else {
-        toast.error('There’s not enough gas fee on Admin wallet.', {
+        toast.error('There are some problems on Bridge. Please wait', {
           theme: "dark",
           autoClose: 2000,
           closeOnClick: true,
         }
         );
       }
+
     } catch (err) {
       toast.error((err as any).message, {
         theme: "dark",
@@ -309,7 +337,7 @@ const BridgeContainer: React.FC = () => {
           Input &nbsp;
         </p>
 
-        <p style={{ marginLeft: "20px", color: "#535353", marginTop: "35px", textAlign: "left"}}>
+        <p style={{ marginLeft: "20px", color: "#535353", marginTop: "35px", textAlign: "left" }}>
           Balance : &nbsp;
           {
             balance &&
@@ -325,9 +353,9 @@ const BridgeContainer: React.FC = () => {
           SWAP
         </Button>
       </section>
-      <p style={{"color":"white"}}>{chainId === 56 ? "AVAX ENE token address: 0x214B86ed37d709C9aDA719Ec00ABBe9E0c802D1d" : "BSC ENE token address: 0x3bEcB1170183fdBc8f1603dacD1705c093BC33B7"}</p>
+      <p style={{ "color": "white" }}>{chainId === 56 ? "AVAX ENE token address: 0x214B86ed37d709C9aDA719Ec00ABBe9E0c802D1d" : "BSC ENE token address: 0x3bEcB1170183fdBc8f1603dacD1705c093BC33B7"}</p>
     </div>
-    
+
   );
 };
 

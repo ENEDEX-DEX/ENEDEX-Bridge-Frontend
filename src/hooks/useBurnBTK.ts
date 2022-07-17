@@ -62,7 +62,7 @@ const useBurnBTK = () => {
   // method for burning the amount of the btk token approved by user
 
   const burnBTK = async (amount: string) => {
-    const id = toast.success(`Burning in progress for ${amount} tokens`, {
+    const id = toast.success(`Locking in progress for ${amount} tokens`, {
       autoClose: false,
       closeOnClick: true,
       theme: "dark",
@@ -78,7 +78,7 @@ const useBurnBTK = () => {
         });
 
       toast.dismiss(id);
-      toast.success(`Burned ${amount} tokens`, {
+      toast.success(`Locked ${amount} tokens`, {
         autoClose: 1500,
         closeOnClick: true,
         theme: "dark",
@@ -90,7 +90,7 @@ const useBurnBTK = () => {
       toast.dismiss(id);
       let message = (err as any).message;
       if ((err as any).code === 4001) {
-        message = `Error in burning ${amount} tokens. Please try again!`;
+        message = `Error in Locking ${amount} tokens. Please try again!`;
       }
 
       toast.error(message, {
