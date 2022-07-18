@@ -39,7 +39,7 @@ const useBurnAVAX = () => {
       console.log(amount);
       toast.dismiss(id);
       toast.success(`Approved ${amount} tokens`, {
-        autoClose: 1500,
+        autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
       });
@@ -52,7 +52,7 @@ const useBurnAVAX = () => {
       }
 
       toast.error(message, {
-        autoClose: 1500,
+        autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
       });
@@ -77,11 +77,6 @@ const useBurnAVAX = () => {
           from: account,
         });
       toast.dismiss(id);
-      toast.success(`Burned ${amount} tokens`, {
-        autoClose: 1500,
-        closeOnClick: true,
-        theme: "dark",
-      });
       return txHash;
 
     } catch (err) {
@@ -92,7 +87,7 @@ const useBurnAVAX = () => {
       }
 
       toast.error(message, {
-        autoClose: 1500,
+        autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
       });

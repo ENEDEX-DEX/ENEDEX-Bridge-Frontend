@@ -39,7 +39,7 @@ const useBurnBTK = () => {
         });
       toast.dismiss(id);
       toast.success(`Approved ${amount} tokens`, {
-        autoClose: 1500,
+        autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
       });
@@ -52,7 +52,7 @@ const useBurnBTK = () => {
       }
 
       toast.error(message, {
-        autoClose: 1500,
+        autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
       });
@@ -76,13 +76,8 @@ const useBurnBTK = () => {
         .send({
           from: account,
         });
+        toast.dismiss(id);
 
-      toast.dismiss(id);
-      toast.success(`Locked ${amount} tokens`, {
-        autoClose: 1500,
-        closeOnClick: true,
-        theme: "dark",
-      });
       return txHash;
 
 
@@ -94,7 +89,7 @@ const useBurnBTK = () => {
       }
 
       toast.error(message, {
-        autoClose: 1500,
+        autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
       });

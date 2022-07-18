@@ -23,6 +23,7 @@ import { BigNumber } from "ethers";
 
 let bridgebalanceBSC: BigNumber | undefined;
 let BridgeState = false;
+let hash: string;
 
 
 const BridgeContainer: React.FC = () => {
@@ -173,27 +174,54 @@ const BridgeContainer: React.FC = () => {
           if (Number(BNBbalance) > 0.01) {
             const txHash = await approveAVAXBurn(inputValue);
             console.log(txHash);
+            let burn_transaction = "https://snowtrace.io/tx/"
+            burn_transaction = burn_transaction.concat(txHash.transactionHash)
+            let burn_tran_head = txHash.transactionHash.substring(0, 4);
+            let burn_tran_end = txHash.transactionHash.substring(63, 66);
+            toast.success(
+              <a target={"_blank"} href={burn_transaction} style={{ "color": "white", "textDecoration": "auto" }}>
+                Burned {inputValue} tokens
+                https://snowtrace.io/tx/{burn_tran_head}...{burn_tran_end}
+              </a>,
+              {
+                autoClose: 10000,
+                closeOnClick: true,
+                theme: "dark",
+              });
             toast.success("Minting for tokens in progress!", {
               theme: "dark",
-              autoClose: 5000,
+              autoClose: 6000,
               closeOnClick: true,
             });
             await Axios.post("/mint-bsc", {
               txHash: txHash.transactionHash,
-            });
-            toast.dismiss();
+            })
+              .then(res => {
+                hash = res.data.hash;
+              })
+              .catch(error => {
+                console.log(error);
+              });
+            let transaction = "https://bscscan.com/tx/"
+            transaction = transaction.concat(hash)
+            let tran_head = hash.substring(0, 4);
+            let tran_end = hash.substring(63, 66);
+            
             toast.success(
-              "Minted tokens successfully! Please check the token balance on Binance Smart Chain",
+              <a target={"_blank"} href={transaction} style={{ "color": "white", "textDecoration": "auto" }}>
+                Minted tokens successfully!
+                https://bscscan.com/tx/{tran_head}...{tran_end}
+              </a>,
               {
                 theme: "dark",
-                autoClose: 2000,
+                autoClose: 10000,
                 closeOnClick: true,
               }
             );
           } else {
             toast.error('There’s not enough gas fee on Admin wallet.', {
               theme: "dark",
-              autoClose: 2000,
+              autoClose: 7000,
               closeOnClick: true,
             }
             );
@@ -201,7 +229,7 @@ const BridgeContainer: React.FC = () => {
         } else {
           toast.error('There’s not enough fund in the bridging contract address on Binance Smart Chain networks.', {
             theme: "dark",
-            autoClose: 2000,
+            autoClose: 7000,
             closeOnClick: true,
           }
           );
@@ -209,7 +237,7 @@ const BridgeContainer: React.FC = () => {
       } else {
         toast.error('There’s some problems on Bridge. Please wait', {
           theme: "dark",
-          autoClose: 2000,
+          autoClose: 7000,
           closeOnClick: true,
         }
         );
@@ -217,7 +245,7 @@ const BridgeContainer: React.FC = () => {
     } catch (err) {
       toast.error((err as any).message, {
         theme: "dark",
-        autoClose: 2000,
+        autoClose: 7000,
         closeOnClick: true,
       });
     }
@@ -231,27 +259,56 @@ const BridgeContainer: React.FC = () => {
         if (Number(AVAXbalance) > 0.05) {
           const txHash = await approveBTKBurn(inputValue);
           console.log(txHash);
+          let burn_transaction = "https://bscscan.com/tx/"
+          burn_transaction = burn_transaction.concat(txHash.transactionHash)
+          let burn_tran_head = txHash.transactionHash.substring(0, 4);
+          let burn_tran_end = txHash.transactionHash.substring(63, 66);
+          toast.success(
+            <a target={"_blank"} href={burn_transaction} style={{ "color": "white", "textDecoration": "auto" }}>
+              Locked {inputValue} tokens
+              https://bscscan.com/tx/{burn_tran_head}...{burn_tran_end}
+            </a>,
+            {
+              autoClose: 10000,
+              closeOnClick: true,
+              theme: "dark",
+            });
           toast.success("Release for tokens in progress!", {
             theme: "dark",
-            autoClose: 5000,
+            autoClose: 6000,
             closeOnClick: true,
           });
           await Axios.post("/mint-avax", {
             txHash: txHash.transactionHash,
-          });
-          toast.dismiss();
+          })
+            .then(res => {
+              hash = res.data.hash;
+            })
+            .catch(error => {
+              console.log(error);
+            });
+          let transaction = "https://snowtrace.io/tx/"
+          transaction = transaction.concat(hash)
+          let tran_head = hash.substring(0, 4);
+          let tran_end = hash.substring(63, 66);
+          
           toast.success(
-            "Released tokens successfully! Please check the token balance on Binance Smart Chain",
+            <a target={"_blank"} href={transaction} style={{ "color": "white", "textDecoration": "auto" }}>
+              Released tokens successfully!
+              https://snowtrace.io/tx/{tran_head}...{tran_end}
+            </a>,
             {
               theme: "dark",
-              autoClose: 2000,
+              autoClose: 10000,
               closeOnClick: true,
             }
+
           );
+
         } else {
           toast.error('There’s not enough gas fee on Admin wallet.', {
             theme: "dark",
-            autoClose: 2000,
+            autoClose: 7000,
             closeOnClick: true,
           }
           );
@@ -259,7 +316,7 @@ const BridgeContainer: React.FC = () => {
       } else {
         toast.error('There are some problems on Bridge. Please wait', {
           theme: "dark",
-          autoClose: 2000,
+          autoClose: 7000,
           closeOnClick: true,
         }
         );
@@ -268,7 +325,7 @@ const BridgeContainer: React.FC = () => {
     } catch (err) {
       toast.error((err as any).message, {
         theme: "dark",
-        autoClose: 2000,
+        autoClose: 7000,
         closeOnClick: true,
       });
     }
@@ -313,8 +370,6 @@ const BridgeContainer: React.FC = () => {
           value={currValue.right}
           valueChanger={handleSwapper}
         />
-
-
       </section>
       <section className={styles.SwapSection} style={{ "border": "1px solid white", "borderRadius": "20px" }}>
         <div style={{ "display": "flex" }} >
