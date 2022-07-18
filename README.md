@@ -27,3 +27,12 @@ And then you have to upload the files in build folder to hosting server.
 2. backend
 First open the command prompt on source code of backend and enter the "yarn install". After install of backend and then enter the "yarn build". Once finish the build, the 
 dist folder will be created. Finally please upload the files in dist folder to hosting server of backend
+
+
+
+-get back the token on Bridge
+The admin wallet can get back the tokens from bridge contract. (BSC Bridge contract: https://bscscan.com/address/0x4aD3052035147636B37E669F9D5fE4298b03F567)
+There are two functions on Bridge contract. Burn and mint functions.
+Burn is for lock and mint is for unlock on BSC Bridge.
+So admin wallet can get back the tokens using mint(unlock) function on BSC Bridge.
+You just enter the receiver address and token amount in this window 
