@@ -31,7 +31,7 @@ dist folder will be created. Finally please upload the files in dist folder to h
 
 
 -get back the token on Bridge
-The admin wallet can get back the tokens from bridge contract. (BSC Bridge contract: https://bscscan.com/address/0x4aD3052035147636B37E669F9D5fE4298b03F567)
+The admin wallet can get back the tokens from bridge contract. (BSC Bridge contract: https://bscscan.com/address/0xA9F8f642730973FaF8ae15c9A284418f5A2F073e)
 There are two functions on Bridge contract. Burn and mint functions.
 Burn is for lock and mint is for unlock on BSC Bridge.
 So admin wallet can get back the tokens using mint(unlock) function on BSC Bridge.
