@@ -22,7 +22,7 @@ const useBurnAVAX = () => {
   // method for approving to burn some amount of the AVAX token mentioned by user
 
   const approveAVAXBurn = async (amount: string) => {
-    const id = toast.success(`Approving in progress for ${amount} tokens`, {
+    const id = toast.success(`Approving in progress for ${amount} ENE tokens`, {
       autoClose: false,
       closeOnClick: true,
       theme: "dark",
@@ -38,7 +38,7 @@ const useBurnAVAX = () => {
         });
       console.log(amount);
       toast.dismiss(id);
-      toast.success(`Approved ${amount} tokens`, {
+      toast.success(`Approved ${amount} ENE tokens`, {
         autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
@@ -48,7 +48,7 @@ const useBurnAVAX = () => {
       toast.dismiss(id);
       let message = (err as any).message;
       if ((err as any).code === 4001) {
-        message = `Error in approving ${amount} tokens. Please try again!`;
+        message = `Error in approving ${amount} ENE tokens. Please try again!`;
       }
 
       toast.error(message, {
@@ -62,7 +62,7 @@ const useBurnAVAX = () => {
   // method for burning the amount of the AVAX token approved by user
 
   const burnAVAX = async (amount: string) => {
-    const id = toast.success(`Burning in progress for ${amount} tokens`, {
+    const id = toast.success(`Burning in progress for ${amount} ENE tokens`, {
       autoClose: false,
       closeOnClick: true,
       theme: "dark",
@@ -83,7 +83,7 @@ const useBurnAVAX = () => {
       toast.dismiss(id);
       let message = (err as any).message;
       if ((err as any).code === 4001) {
-        message = `Error in burning ${amount} tokens. Please try again!`;
+        message = `Error in burning ${amount} ENE tokens. Please try again!`;
       }
 
       toast.error(message, {

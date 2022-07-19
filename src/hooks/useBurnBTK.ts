@@ -23,7 +23,7 @@ const useBurnBTK = () => {
   // method for approving to burn some amount of the btk token mentioned by user
 
   const approveBTKBurn = async (amount: string) => {
-    const id = toast.success(`Approving in progress for ${amount} tokens`, {
+    const id = toast.success(`Approving in progress for ${amount} ENE tokens`, {
       autoClose: false,
       closeOnClick: true,
       theme: "dark",
@@ -38,7 +38,7 @@ const useBurnBTK = () => {
           from: account,
         });
       toast.dismiss(id);
-      toast.success(`Approved ${amount} tokens`, {
+      toast.success(`Approved ${amount} ENE tokens`, {
         autoClose: 4000,
         closeOnClick: true,
         theme: "dark",
@@ -48,7 +48,7 @@ const useBurnBTK = () => {
       toast.dismiss(id);
       let message = (err as any).message;
       if ((err as any).code === 4001) {
-        message = `Error in approving ${amount} tokens. Please try again!`;
+        message = `Error in approving ${amount} ENE tokens. Please try again!`;
       }
 
       toast.error(message, {
@@ -62,7 +62,7 @@ const useBurnBTK = () => {
   // method for burning the amount of the btk token approved by user
 
   const burnBTK = async (amount: string) => {
-    const id = toast.success(`Locking in progress for ${amount} tokens`, {
+    const id = toast.success(`Locking in progress for ${amount} ENE tokens`, {
       autoClose: false,
       closeOnClick: true,
       theme: "dark",
@@ -85,7 +85,7 @@ const useBurnBTK = () => {
       toast.dismiss(id);
       let message = (err as any).message;
       if ((err as any).code === 4001) {
-        message = `Error in Locking ${amount} tokens. Please try again!`;
+        message = `Error in Locking ${amount} ENE tokens. Please try again!`;
       }
 
       toast.error(message, {

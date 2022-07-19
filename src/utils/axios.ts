@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Axios = axios.create({
-  baseURL:"https://bridge-backend.enedex.org/",
+  baseURL:"http://localhost:5000/",
   //"https://bridge-backend.enedex.org/",
   
 });

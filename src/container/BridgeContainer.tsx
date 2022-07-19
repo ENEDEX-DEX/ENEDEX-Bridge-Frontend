@@ -101,7 +101,7 @@ const BridgeContainer: React.FC = () => {
   let bridgebalance = useTokenBalance(  //BSC Bridge contract amount
     '0x3bEcB1170183fdBc8f1603dacD1705c093BC33B7'
     ,
-    '0x4aD3052035147636B37E669F9D5fE4298b03F567'
+    '0xA9F8f642730973FaF8ae15c9A284418f5A2F073e'
   );
 
   if (bridgebalanceBSC == undefined && chainId == 56) {
@@ -180,7 +180,7 @@ const BridgeContainer: React.FC = () => {
             let burn_tran_end = txHash.transactionHash.substring(63, 66);
             toast.success(
               <a target={"_blank"} href={burn_transaction} style={{ "color": "white", "textDecoration": "auto" }}>
-                Burned {inputValue} tokens
+                Burned {inputValue} ENE tokens
                 https://snowtrace.io/tx/{burn_tran_head}...{burn_tran_end}
               </a>,
               {
@@ -188,7 +188,7 @@ const BridgeContainer: React.FC = () => {
                 closeOnClick: true,
                 theme: "dark",
               });
-            toast.success("Minting for tokens in progress!", {
+            toast.success("Minting for ENE tokens in progress!", {
               theme: "dark",
               autoClose: 6000,
               closeOnClick: true,
@@ -209,7 +209,7 @@ const BridgeContainer: React.FC = () => {
             
             toast.success(
               <a target={"_blank"} href={transaction} style={{ "color": "white", "textDecoration": "auto" }}>
-                Minted tokens successfully!
+                Minted ENE tokens successfully!
                 https://bscscan.com/tx/{tran_head}...{tran_end}
               </a>,
               {
@@ -265,7 +265,7 @@ const BridgeContainer: React.FC = () => {
           let burn_tran_end = txHash.transactionHash.substring(63, 66);
           toast.success(
             <a target={"_blank"} href={burn_transaction} style={{ "color": "white", "textDecoration": "auto" }}>
-              Locked {inputValue} tokens
+              Locked {inputValue} ENE tokens
               https://bscscan.com/tx/{burn_tran_head}...{burn_tran_end}
             </a>,
             {
@@ -273,7 +273,7 @@ const BridgeContainer: React.FC = () => {
               closeOnClick: true,
               theme: "dark",
             });
-          toast.success("Release for tokens in progress!", {
+          toast.success("Release for ENE tokens in progress!", {
             theme: "dark",
             autoClose: 6000,
             closeOnClick: true,
@@ -294,7 +294,7 @@ const BridgeContainer: React.FC = () => {
           
           toast.success(
             <a target={"_blank"} href={transaction} style={{ "color": "white", "textDecoration": "auto" }}>
-              Released tokens successfully!
+              Released ENE tokens successfully!
               https://snowtrace.io/tx/{tran_head}...{tran_end}
             </a>,
             {

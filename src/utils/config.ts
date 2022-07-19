@@ -22,6 +22,6 @@ export const Contracts: ContractsConfig[] = [
   {
     name: "BSCBridge",
     abi: BSCBridge,
-    address: '0x4aD3052035147636B37E669F9D5fE4298b03F567',  // update the contract to Bridge(including fee).sol
+    address: '0xA9F8f642730973FaF8ae15c9A284418f5A2F073e',  // update the contract to Bridge(including fee).sol
   },
 ];
