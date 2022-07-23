@@ -22,7 +22,8 @@ import { BigNumber } from "ethers";
 
 
 let bridgebalanceBSC: BigNumber | undefined;
-let BridgeState = false;
+let BridgeState_BSC: null;
+let AvaxState: number;
 let hash: string;
 
 
@@ -38,9 +39,17 @@ const BridgeContainer: React.FC = () => {
     right: "Avalanche C-Chain",
   });
 
-  Axios.post("/BridgeState", {})   // To get the ETH bridge balance first time from node server.js
+  Axios.post("/BridgeState_BSC", {})   // To get the ETH bridge balance first time from node server.js
     .then(res => {
-      BridgeState = res.data.balances;
+      BridgeState_BSC = res.data.state_bsc;
+    })
+    .catch(error => {
+      console.log(error);
+    })
+
+  Axios.post("/AVAXToken_state", {})   // To get the ETH bridge balance first time from node server.js
+    .then(res => {
+      AvaxState = res.data.state_avax;
     })
     .catch(error => {
       console.log(error);
@@ -169,7 +178,7 @@ const BridgeContainer: React.FC = () => {
     BNBbalance = BSCweb3.utils.fromWei(BNBbalance, 'ether');
 
     try {
-      if (BridgeState == true) {
+      if (BridgeState_BSC != null && AvaxState >= 0) {
         if (Number(bridgebalanceBSC?.toString()) > Number(inputValue) * 1000000000000000000 || bridgebalanceBSC?.toString() === undefined) {
           if (Number(BNBbalance) > 0.01) {
             const txHash = await approveAVAXBurn(inputValue);
@@ -206,7 +215,7 @@ const BridgeContainer: React.FC = () => {
             transaction = transaction.concat(hash)
             let tran_head = hash.substring(0, 4);
             let tran_end = hash.substring(63, 66);
-            
+
             toast.success(
               <a target={"_blank"} href={transaction} style={{ "color": "white", "textDecoration": "auto" }}>
                 Minted ENE tokens successfully!
@@ -255,7 +264,7 @@ const BridgeContainer: React.FC = () => {
     AVAXbalance = await AVAXweb3.eth.getBalance("0x3f1991E3A7f296030fD22472919B918F869c26DE"); // admin wallet address
     AVAXbalance = AVAXweb3.utils.fromWei(AVAXbalance, 'ether');
     try {
-      if (BridgeState == true) {
+      if (BridgeState_BSC != null && AvaxState >= 0) {
         if (Number(AVAXbalance) > 0.05) {
           const txHash = await approveBTKBurn(inputValue);
           console.log(txHash);
@@ -291,7 +300,7 @@ const BridgeContainer: React.FC = () => {
           transaction = transaction.concat(hash)
           let tran_head = hash.substring(0, 4);
           let tran_end = hash.substring(63, 66);
-          
+
           toast.success(
             <a target={"_blank"} href={transaction} style={{ "color": "white", "textDecoration": "auto" }}>
               Released ENE tokens successfully!
