@@ -110,7 +110,7 @@ const BridgeContainer: React.FC = () => {
   let bridgebalance = useTokenBalance(  //BSC Bridge contract amount
     '0x3bEcB1170183fdBc8f1603dacD1705c093BC33B7'
     ,
-    '0xA9F8f642730973FaF8ae15c9A284418f5A2F073e'
+    '0x4ad3052035147636b37e669f9d5fe4298b03f567'
   );
 
   if (bridgebalanceBSC == undefined && chainId == 56) {
